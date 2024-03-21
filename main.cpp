@@ -18,24 +18,34 @@ auto grad_f = [](const std::vector<double>& x) -> std::vector<double> {
     return gradient;
 };
 ///////////////////////////MAIN FUNCTION, WE EXECUTE OUR TEST///////////////////////////////////////////////
-int main() {
+int main(int argc, char **argv) {
 //Read parameters from a GetPot file. We still have to define:
 //f,grad_f,the optimization strategy and the update strategy on ak.
-    GetPot datafile("parameters.pot");
+
+
+
+
+    GetPot command_line(argc, argv);
+    const std::string filename = command_line.follow("data", 2, "-f", "--file");
+    GetPot datafile(filename.c_str());
+  
     // Initial point
-    double x=datafile("initial_condition_x",0.);
-    double y=datafile("initial_condition_y",0.);
+    double x=datafile("x0",0.);
+    double y=datafile("y0",0.);
     Point x0{x,y};
     // Tolerances
-    double epsilon_r = datafile("tol_res",1e-6);
-    double epsilon_s = datafile("tol_step",1e-6);
+    double epsilon_r = datafile("eps_r",1e-6);
+    double epsilon_s = datafile("eps_s",1e-6);
     // Maximum number of iterations
-    int max_iterations = datafile("max_iter",1000);
+    int max_iterations = datafile("N",1000);
     // Initial step size
-    double alpha0 = datafile("initial_step",1e-2);
+    double alpha0 = datafile("a0",1e-2);
     // Create a struct to hold all parameters
     double mu = datafile("mu",0.01);
     double sigma = datafile("sigma",0.125);
+
+
+    //TO BE IMPLEMENTED: MUPARSER AND MUPARSERX 
 
 
     //Aggregating all parameters into a struct
@@ -48,18 +58,20 @@ int main() {
             f,
             grad_f,
             StepSizeStrategy::Armijo,// Use Armijo rule for step size selection
-            OptimizationStrategy::nesterov,
+            OptimizationStrategy::gradient_descent,
             mu,
             sigma
     };
 
+
+   
 
     // Perform optimization and printing out minimum point and minimum value at that point.
     std::vector<Point> min_point = optimize(params);
     std::cout<<min_point.back()[0]<<" "<<min_point.back()[1]<<std::endl;
     std::cout<<params.function(min_point.back())<<std::endl;
 
-
+/*
     //Another Test
     OptimizationParameters params2 = {
             x0,
@@ -79,8 +91,8 @@ int main() {
     std::cout<<min_point2.back()[0]<<" "<<min_point2.back()[1]<<std::endl;
     std::cout<<params.function(min_point2.back())<<std::endl;
 
-//Yet another test
-    OptimizationParameters params3 = {
+	//Yet another test
+   	 OptimizationParameters params3 = {
             x0,
             epsilon_r,
             epsilon_s,
@@ -97,14 +109,14 @@ int main() {
     std::vector<Point> min_point3 = optimize(params3);
     std::cout<<min_point3.back()[0]<<" "<<min_point3.back()[1]<<std::endl;
     std::cout<<params.function(min_point3.back())<<std::endl;
-    /*
+
     std::vector<Point> min_point3 = gradient_descent(params);
     std::cout<<min_point3.back()[0]<<" "<<min_point3.back()[1]<<std::endl;
     std::cout<<params.function(min_point3.back())<<std::endl;
-     */
+
+  */
 
 
-    //Printing the convergence history to a file to maybe plot it with gnuplot...
 
     std::ofstream file("results.dat");
     if (file.is_open()) {

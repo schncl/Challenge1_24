@@ -6,7 +6,7 @@
 #include <string>
 
 //some typedef for convenience
-using function=std::function<double(const std::vector<double>&)>;
+using functions=std::function<double(const std::vector<double>&)>;
 using vec_function=std::function<std::vector<double>(const std::vector<double>&)>;
 using Point=std::vector<double>;
 
@@ -32,7 +32,7 @@ struct OptimizationParameters {
     double epsilon_s;
     int max_iterations;
     double initial_step;
-    function function;
+    functions function;
     vec_function gradient;
     StepSizeStrategy step_size_strategy;
     OptimizationStrategy method;
