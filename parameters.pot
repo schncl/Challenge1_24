@@ -15,4 +15,10 @@ a0=1e-2
 mu=0.01
 #sigma
 sigma=0.1
+#function
+f="x*y+4*x^4+y^2+3*x"
+#grad_x
+d_x="y+16*x^3+3"
+#grad_y
+d_y="x+2*y"
 

@@ -44,6 +44,14 @@ int main(int argc, char **argv) {
     double mu = datafile("mu",0.01);
     double sigma = datafile("sigma",0.125);
 
+    //Parsing the functions
+    //std::string fun= datafile("f",);
+    //std::string grad_x=datafile("d_x");
+    //std::string grad_y=datafile("d_y");
+
+    //mu::ParserX parser;
+    //parser.SetExpr(functionExpressionX);
+
 
     //TO BE IMPLEMENTED: MUPARSER AND MUPARSERX 
 
