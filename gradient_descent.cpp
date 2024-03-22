@@ -45,34 +45,28 @@ double ArmijoStepSize(const OptimizationParameters&params,const double a0,const 
     }
     return ak;
 }
-double Inverse_decay(const OptimizationParameters& params, const double a0, const Point& xk,auto k) {
+double Inverse_decay(const OptimizationParameters& params, const double a0, const Point& xk,std::size_t k) {
     double alpha = a0;
-    // Some decay rate typically between 0 and 1
-
-    // Update alpha using inverse decay
-    alpha /= (1 + params.mu * k);  // Assuming 'iteration' is known
-
+    alpha /= (1 + params.mu * k);  
     return alpha;
 }
-double ExpDecay(const OptimizationParameters& params, const double a0, const Point& xk,auto k) {
+double ExpDecay(const OptimizationParameters& params, const double a0, const Point& xk,std::size_t k) {
     double alpha = a0;
-    // Some decay rate typically between 0 and 1
-
-    // Update alpha using exponential decay
-    alpha *= std::exp(-params.mu * k);  // Assuming 'iteration' is known
-
+    alpha *= std::exp(-params.mu * k); 
     return alpha;
 }
-double update_ak(const OptimizationParameters& params,const double a0,const Point& xk,auto k){
+double update_ak(const OptimizationParameters& params,const double a0,const double ak,const Point& xk,std::size_t k){
     switch(params.step_size_strategy) {
         case StepSizeStrategy::Armijo:
-            return ArmijoStepSize(params, a0, xk);
+            return ArmijoStepSize(params, ak, xk);
         case StepSizeStrategy::ExponentialDecay:
             return ExpDecay(params,a0,xk,k);
         case StepSizeStrategy::InverseDecay:
             return Inverse_decay(params,a0,xk,k);
+        case StepSizeStrategy::Constant:
+            return ak;    
         default:
-            return a0;
+            return ak;
 
     }
 }
@@ -97,7 +91,7 @@ std::vector<Point> gradient_descent(const OptimizationParameters& params){
         if(vectorNormdiff(x_new,x_old)<params.epsilon_s || std::abs(f_new-f_old)<params.epsilon_r){
             flag=false;
         }
-        ak= update_ak(params,ak,x_new,k);
+        ak= update_ak(params,ak,a0,x_new,k);
         x_old=x_new;
     }
     if(k==params.max_iterations){
@@ -146,7 +140,7 @@ std::vector<Point> gradient_descent_w_momentum(const OptimizationParameters& par
         }
         x_old=x_new;
         d_old=d_new;
-        //ak=update_ak();
+        ak=update_ak(params,ak,a0,x_new,k);
     }
     if(k==params.max_iterations){
         std::cout<<"The algorithm did not converge..."<<std::endl;
@@ -172,7 +166,8 @@ std::vector<Point> nesterov(const OptimizationParameters& params){
 
     bool flag=true;
     auto k=0;
-    auto ak=params.initial_step;
+    double a0=params.initial_step;
+    auto ak=a0;
     auto grad=params.gradient(x_old);
     for(auto i=0;i<x_new.size();++i){
         x_new[i]=x_old[i]-ak*grad[i];
@@ -194,7 +189,7 @@ std::vector<Point> nesterov(const OptimizationParameters& params){
         if(vectorNormdiff(x_new,x_old)<params.epsilon_s || std::abs(f_new-f_old)<params.epsilon_r){
             flag=false;
         }
-        ak=update_ak(params,ak,x_new,k);
+        ak=update_ak(params,ak,a0,x_new,k);
         x_old=x_new;
     }
     if(k==params.max_iterations){

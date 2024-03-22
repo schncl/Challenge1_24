@@ -14,7 +14,8 @@ using Point=std::vector<double>;
 enum class StepSizeStrategy {
     ExponentialDecay,
     InverseDecay,
-    Armijo
+    Armijo,
+    Constant
 };
 
 //Enum to speify optimization strat
@@ -52,7 +53,7 @@ std::vector<Point> nesterov(const OptimizationParameters& params);
 double ArmijoStepSize(const OptimizationParameters& params,const double a0,const Point& xk);
 double ExpDecay(const OptimizationParameters& params,const double a0,const Point& xk);
 double Inverse_decay(const OptimizationParameters& params,const double a0,const Point& xk);
-double update_ak(const OptimizationParameters& params,const double a0,const Point& xk,auto k);
+double update_ak(const OptimizationParameters& params,const double a0,const double ak,const Point& xk,std::size_t k);
 //Function that collect al of this, you can choose method and l_r update strategy.
 std::vector<Point> optimize(const OptimizationParameters& params);
 

@@ -44,16 +44,31 @@ int main(int argc, char **argv) {
     double mu = datafile("mu",0.01);
     double sigma = datafile("sigma",0.125);
 
-    //Parsing the functions
-    //std::string fun= datafile("f",);
-    //std::string grad_x=datafile("d_x");
-    //std::string grad_y=datafile("d_y");
+    std::string strategy= datafile("strat","Armijo");
+    std::string method=datafile("method","gradient_descent");
 
-    //mu::ParserX parser;
-    //parser.SetExpr(functionExpressionX);
+    std::cout<<strategy<<std::endl;
+
+    StepSizeStrategy s;
+    if(strategy=="Armijo")
+        s=StepSizeStrategy::Armijo;
+    if(strategy=="Constant")
+        s=StepSizeStrategy::Constant;
+    if(strategy=="ExponentialDecay")
+        s=StepSizeStrategy::ExponentialDecay; 
+    if(strategy=="InverseDecay")
+        s=StepSizeStrategy::InverseDecay;
 
 
-    //TO BE IMPLEMENTED: MUPARSER AND MUPARSERX 
+
+
+    OptimizationStrategy m;
+    if(method=="gradient_descent")
+        m=OptimizationStrategy::gradient_descent;
+    if(method=="gradient_descent_with_momentum")
+        m=OptimizationStrategy::gradient_descent_with_momentum;
+    if(method=="nesterov")
+        m=OptimizationStrategy::nesterov;
 
 
     //Aggregating all parameters into a struct
@@ -65,8 +80,8 @@ int main(int argc, char **argv) {
             alpha0,
             f,
             grad_f,
-            StepSizeStrategy::Armijo,// Use Armijo rule for step size selection
-            OptimizationStrategy::gradient_descent,
+            s,// Use Armijo rule for step size selection
+            m,
             mu,
             sigma
     };
