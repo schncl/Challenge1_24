@@ -32,7 +32,7 @@ int main(int argc, char **argv) {
     // Initial point
     double x=datafile("x0",0.);
     double y=datafile("y0",0.);
-    Point x0{x,y};
+    Point x0={x,y};
     // Tolerances
     double epsilon_r = datafile("eps_r",1e-6);
     double epsilon_s = datafile("eps_s",1e-6);
