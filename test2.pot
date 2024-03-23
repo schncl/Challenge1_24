@@ -1,8 +1,8 @@
 
 # initial_condition_x
-x0=0.0
+x0=0.56
 #initial_condition_t
-y0=-0.0
+y0=-0.24
 #tol_res
 eps_r=1e-6
 #tol_step
@@ -16,11 +16,11 @@ mu=0.01
 #sigma
 sigma=0.1
 #update_strat_ak, accepts: "Armijo","InverseDecay","ExponentialDecay","Constant"
-strat=Armijo
+strat=ExponentialDecay
 
 #optimization method, accepts: "gradient_descent","gradient_descent_with_momentum"
 #                              "nesterov"
 method=gradient_descent_with_momentu_with_momentum
 
 #finite difference: Y for finite difference, N for the hard-coded gradient
-f_d=Y
+f_d=N
