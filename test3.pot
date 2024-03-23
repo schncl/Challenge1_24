@@ -1,7 +1,7 @@
 # initial_condition_x
-x0=0.23
+x0=12
 #initial_condition_t
-y0=0.12
+y0=4
 #tol_res
 eps_r=1e-6
 #tol_step
@@ -9,13 +9,13 @@ eps_s=1e-6
 #max_iter
 N=1000
 #initial_step
-a0=1e-2
+a0=5
 #mu
 mu=0.01
 #sigma
 sigma=0.1
 #update_strat_ak, accepts: "Armijo","InverseDecay","ExponentialDecay","Constant"
-strat=ExponentialDecay
+strat=InverseDecay
 #optimization method, accepts: "gradient_descent","gradient_descent_with_momentum"
 #                              "nesterov"
 method=nesterov
