@@ -10,7 +10,7 @@ eps_s=1e-6
 #max_iter
 N=1000
 #initial_step
-a0=5
+a0=1e-1
 #mu
 mu=0.01
 #sigma
@@ -20,7 +20,7 @@ strat=ExponentialDecay
 
 #optimization method, accepts: "gradient_descent","gradient_descent_with_momentum"
 #                              "nesterov"
-method=gradient_descent_with_momentu_with_momentum
+method=gradient_descent_with_momentum
 
 #finite difference: Y for finite difference, N for the hard-coded gradient
 f_d=N

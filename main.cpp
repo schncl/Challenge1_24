@@ -65,7 +65,6 @@ int main(int argc, char **argv) {
     std::string strategy= datafile("strat","Armijo");
     std::string method=datafile("method","nesterov");
 
-    std::cout<<strategy<<std::endl;
 
     StepSizeStrategy s;
     if(strategy=="Armijo")
@@ -77,7 +76,7 @@ int main(int argc, char **argv) {
     if(strategy=="InverseDecay")
         s=StepSizeStrategy::InverseDecay;
 
-     std::cout<<"Using the"<< strategy << " strategy for ak update"<<"\n";	
+     std::cout<<"Using the  "<< strategy << " strategy for ak update"<<"\n";	
 
 
 
@@ -89,7 +88,7 @@ int main(int argc, char **argv) {
     if(method=="nesterov")
         m=OptimizationStrategy::nesterov;
 
-    std::cout<<"Using the"<< method << " method "<<"\n";	
+    std::cout<<"Using the "<< method << " method "<<"\n";	
 
 	
     std::string f_d= datafile("f_d","Y");
@@ -172,7 +171,7 @@ int main(int argc, char **argv) {
 
 
 
-    std::string name=filename + ".dat";
+    std::string name= filename  + ".dat";
 
     std::ofstream file(name);
     if (file.is_open()) {
