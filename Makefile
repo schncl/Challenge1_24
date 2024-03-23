@@ -14,9 +14,9 @@ $(EXEC): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(OBJS) -o $@
 
 clean:
-	$(RM) *.o $(EXEC) results.dat
+	$(RM) *.o $(EXEC) *.dat
 
 distclean: clean
-	$(RM) $(EXEC) results.dat
+	$(RM) $(EXEC) *.dat
 
 
