@@ -11,16 +11,16 @@ eps_s=1e-6
 N=1000
 #initial_step
 a0=5
-#mu
+#mu parameter for exp and inv decay
 mu=0.01
-#sigma
+#sigma parameter for armijo 
 sigma=0.1
 #update_strat_ak, accepts: "Armijo","InverseDecay","ExponentialDecay","Constant"
 strat=Armijo
 
 #optimization method, accepts: "gradient_descent","gradient_descent_with_momentum"
 #                              "nesterov"
-method=gradient_descent_with_momentu_with_momentum
+method=gradient_descent_with
 
 #finite difference: Y for finite difference, N for the hard-coded gradient
-f_d=Y
+f_d=N
