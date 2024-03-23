@@ -94,11 +94,11 @@ std::vector<Point> gradient_descent(const OptimizationParameters& params){
         ak= update_ak(params,ak,a0,x_new,k);
         x_old=x_new;
     }
-    if(k==params.max_iterations){
+    if(k==params.max_iterations)
         std::cout<<"The algorithm did not converge..."<<std::endl;
-    }
-    std::cout<<"Reached in:"<<k<<" iterations"<<std::endl;
-    std::cout<<"The minimum is. "<<ret.back()[0]<<" "<<ret.back()[1]<<"."<<std::endl;
+    else
+        std::cout<<"Reached in:"<<k<<" iterations"<<std::endl;
+
     return ret;
 }
 /////////////////////////////////////////////////////////////////////////////////
@@ -147,7 +147,6 @@ std::vector<Point> gradient_descent_w_momentum(const OptimizationParameters& par
     }
     else {
         std::cout << "Reached in:" << k << " iterations" << std::endl;
-        std::cout<<"The minimum is. "<<ret.back()[0]<<" "<<ret.back()[1]<<"."<<std::endl;
     }
 
 
@@ -197,7 +196,6 @@ std::vector<Point> nesterov(const OptimizationParameters& params){
     }
     else {
         std::cout << "Reached in:" << k << " iterations" << std::endl;
-        std::cout<<"The minimum is. "<<ret.back()[0]<<" "<<ret.back()[1]<<"."<<std::endl;
     }
 
     return ret;
