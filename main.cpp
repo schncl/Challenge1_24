@@ -77,6 +77,7 @@ int main(int argc, char **argv) {
     if(strategy=="InverseDecay")
         s=StepSizeStrategy::InverseDecay;
 
+     std::cout<<"Using the"<< strategy << " strategy for ak update"<<"\n";	
 
 
 
@@ -88,14 +89,19 @@ int main(int argc, char **argv) {
     if(method=="nesterov")
         m=OptimizationStrategy::nesterov;
 
+    std::cout<<"Using the"<< method << " method "<<"\n";	
 
+	
     std::string f_d= datafile("f_d","Y");
     vec_function gradient;
-    if(f_d=="N")
+    if(f_d=="N"){
         gradient=grad_f;
-    else
+	std::cout<<"Not using finite differences"<<"\n"; 
+    }
+    else{
         gradient=grad_f_fd;
-
+	std::cout<<"Using finite differences"<<"\n";    
+    }
 
     //Aggregating all parameters into a struct
     OptimizationParameters params = {
@@ -112,10 +118,7 @@ int main(int argc, char **argv) {
             sigma
     };
 
-
-   
-
-
+			
 
     // Perform optimization and printing out minimum point and minimum value at that point.
     std::vector<Point> min_point = optimize(params);
