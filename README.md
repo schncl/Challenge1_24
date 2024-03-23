@@ -1,7 +1,7 @@
 # Challenge1_24
 
-This program read all the parameters for performing optimization from a getpot file, so we need to pass the file via -f filename
-In the GetPot file you can also choose which optimization strategy you want between gradient descent (with or without momentum)
+This program read all the parameters for performing optimization from a getpot file, so we need to pass the file via -f filename.
+In the GetPot file you can also choose which optimization strategy you want to use between gradient descent (with or without momentum)
 and nesterov. Furthermore you can also choose the update strategy for the learning rate. The options in this case are Armijo
 Inverse or Exponential Decay or constant. 
 The functions are hardcoded as lambda functions because i was not able to figure out muparserx in time
