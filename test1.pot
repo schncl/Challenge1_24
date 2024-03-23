@@ -20,7 +20,7 @@ strat=Armijo
 
 #optimization method, accepts: "gradient_descent","gradient_descent_with_momentum"
 #                              "nesterov"
-method=gradient_descent_with_momentu_with_momentum
+method=nesterov
 
 #finite difference: Y for finite difference, N for the hard-coded gradient
-f_d=Y
+f_d=N
