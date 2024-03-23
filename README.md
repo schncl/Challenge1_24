@@ -6,6 +6,11 @@ and nesterov. Furthermore you can also choose the update strategy for the learni
 Inverse or Exponential Decay or constant. 
 The functions are hardcoded as lambda functions because i was not able to figure out muparserx in time
 The choice of the learning rate and initial point are rather important, usually the bigger the modulus of x and y 
-the more likely is the algorithm to not converge, and also the learning rate has to be tuned via trial and error
+the more likely is the algorithm to not converge, and also the learning rate has to be tuned via trial and error.
+You can also decide whether to use the hard-coded version of the gradient or the one computed via finite differences.
 
-I have created various test and i will add also a way to plot the results either a python notebook or a script
+The program prints the minimum point, as well as the value of the function in said point, and write in a file
+for each iteration the coordinate of the point at iteration k and the computed value of the function.
+
+I created different test, and i also added a simple python notebook to visualize the convergence history over a contour plot of f, 
+since i was not able to do that with gnuplot...
