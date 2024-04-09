@@ -29,6 +29,8 @@ enum class OptimizationStrategy {
 // Struct to hold optimization parameters
 struct OptimizationParameters {
     std::vector<double> initial_point;
+    //@note Use in-class initialization to give a default values
+    // Moreover, initializing varaibale is always good.
     double epsilon_r;
     double epsilon_s;
     int max_iterations;

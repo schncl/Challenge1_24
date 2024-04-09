@@ -2,6 +2,9 @@
 #include <iostream>
 #include <cmath>
 
+//@note Try to use namespaces to avoid name clashes
+//These names are very common. If you use this in a bigger project, you risk
+//having name clashes with other libraries.
 using function=std::function<double(const std::vector<double>&)>;
 using vec_function =std::function<std::vector<double>(const std::vector<double>&)>;
 using Point=std::vector<double>;
@@ -191,13 +194,16 @@ std::vector<Point> nesterov(const OptimizationParameters& params){
         ak=update_ak(params,ak,a0,x_new,k);
         x_old=x_new;
     }
+    //@note unless needed for debugging, you normally don't want to print to the console
+    //from heavy duty method. Leave the printouts at a higher level.
     if(k==params.max_iterations){
         std::cout<<"The algorithm did not converge..."<<std::endl;
     }
     else {
         std::cout << "Reached in:" << k << " iterations" << std::endl;
     }
-
+    //@note It is fine to return the whole trajectory, but you might want to return only the last point
+    //if you are interested in the solution only.
     return ret;
 }
 ///////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,3 @@
+The code is rather good. Some comments and remarks in the sources.
+
+One thing, why you ae not looking at th eocmpiler warnings? They tell you something...
